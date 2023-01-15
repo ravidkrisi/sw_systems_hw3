@@ -24,7 +24,7 @@ int main()
             }
         }  
 
-        if(char_input == 'n')
+        else if(char_input == 'n')
         {
 
             //check if the node exist in the graph, else add it 
@@ -59,6 +59,40 @@ int main()
             }
             
         } 
+        else if(char_input == 'B')
+        {
+            scanf(" %d", &node_start);
+            if(is_node_in_graph(graph_p, node_start)==0)
+            {
+                add_node(graph_p, node_start);
+            }
+            else
+            {
+                node_start_p = get_node(graph_p, node_start);
+                free_outward_edges(node_start_p);
+            }
+            while(1)
+            {
+                int flag=scanf(" %d", &node_end);
+                if(flag!=1)
+                {
+                    break;
+                }
+                scanf(" %d", &weight);
+                //check if the node exist in the graph, else add it
+                if(is_node_in_graph(graph_p, node_end) == 0)
+                {
+                add_node(graph_p, node_end);
+                printf("added node: %d\n", node_end);
+                }
+                //enter the node pointer to node_end_p
+                node_end_p = get_node(graph_p, node_end);
+                //add the edge to the graph
+                add_edge(node_start_p, node_start, node_end, weight);
+                printf("added edge:(%d,%d)\n", node_start, node_end);
+            }
+        }
+
     }
     print_graph(graph_p);
     return 0;

@@ -100,10 +100,17 @@ int dijkstra(int start, int end, graph *gh)
 void print_graph(graph *gh)
 {
   node *node_p = gh->head_node;
+  edge *edge_p = NULL;
 
   while(node_p!=NULL)
   {
-    printf("%d\n", node_p->data);
+    printf("node: %d\n", node_p->data);
+    edge_p = node_p->edges_list_head;
+    while(edge_p!=NULL)
+    {
+        printf("edge:(%d,%d)\n", edge_p->start, edge_p->end);
+        edge_p = edge_p->next_edge;
+    }
     node_p=node_p->next_node;
   }
 }
