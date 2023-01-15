@@ -41,6 +41,7 @@ void free_outward_edges(node *node_p)
     free(head);
     head=temp;
     }
+    node_p->edges_list_head = NULL;
 }
 
 /**

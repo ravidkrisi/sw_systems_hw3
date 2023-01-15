@@ -1,10 +1,10 @@
 graph: algo.o edges.o nodes.o main.o
-	gcc -c algo.o edges.o nodes.o main.o -o graph
+	gcc algo.o edges.o nodes.o main.o -o graph
 
 algo.o: algo.c graph.h
 	gcc -c algo.c -o algo.o
 
-edges.o: edges.o graph.h
+edges.o: edges.c graph.h
 	gcc -c edges.c -o edges.o
 
 nodes.o: nodes.c graph.h

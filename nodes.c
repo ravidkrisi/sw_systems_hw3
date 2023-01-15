@@ -35,6 +35,7 @@ node* get_node(graph *graph_p, int data)
         {
             return temp;
         }
+        temp= temp->next_node;
     }
 }
 
