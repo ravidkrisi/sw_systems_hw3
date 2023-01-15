@@ -1,8 +1,8 @@
 #include "algo.h"
 
 /**
- * @param nodes_number the number of nodes in the graph
- * this method creates a graph with the number of nodes 
+ * this method creates a graph with the number of nodes
+ * @param nodes_number the number of nodes in the graph 
  * @return pointer to the graph we created 
 */
 graph* create_graph(int nodes_number)
@@ -19,10 +19,10 @@ graph* create_graph(int nodes_number)
 }
 
 /**
+ * this method returns 1 if the node is in the graph
  * @param graph_p pointer to the graph
  * @param data holds the number of the node
- * this method returns 1 if the node is in the graph,
- * else return 0
+ * @return 1 if the node is in the graph, else return 0
 */
 int is_node_in_graph(graph *graph_p, int data)
 {
@@ -36,5 +36,75 @@ int is_node_in_graph(graph *graph_p, int data)
         temp = temp->next_node;
     }
     return 0;
+}
+/**
+ * this method find the shortest path between start and end using dijkstra algo
+ * @param start index of the start node 
+ * @param end index of the end node 
+ * @param gh pointer to the graph 
+ * @return the shortest path between start and end nodes
+*/
+int dijkstra(int start, int end, graph *gh)
+{
+    node *start_p = get_node(gh, start);
+    node *end_p = get_node(gh, end);
+    node *head = gh->head_node;
+    int min = INF;
+    int min_index = start;
+
+    //set all node's distance to INF
+    while(head!=NULL)
+    {
+        head->distance = INF;
+        head->visited = 0;
+        head = head->next_node;
+    }
+    //set start node's distance to 0
+    start_p->distance = 0;
+    node *head = gh->head_node;
+
+
+    while(start_p->visited!=1)
+    {
+    edge *edge_head = start_p->edges_list_head;
+
+    //updating the distance from start node to all edges end node
+    while(edge_head!=NULL)
+    {
+        //set pointer to the node in the end of the edge
+        end_p=get_node(gh, edge_head->end);
+        //examine only the nodes we have not visited 
+        if(end_p->visited == 0)
+        {
+        if(start_p->distance+edge_head->weight<end_p->distance)
+        {
+            end_p->distance=start_p->distance+edge_head;
+            if(end_p->distance<min)
+            {
+                min = end_p->distance;
+                min_index = end_p->data;
+            }
+        }
+        }
+        edge_head = edge_head->next_edge;
+    }
+    //finish itereting all the edges of the node and going to the shortest path node
+    start_p->visited = 1;
+    start_p = get_node(gh, min_index);
+    }
+
+    //set pointer to the end node we supposed to check the distance and return the distance
+    node *end_p = get_node(gh, end);
+    return end_p->distance;
+}
+
+void print_graph(graph *gh)
+{
+  node *node_p = gh->head_node;
+
+  while(node_p!=NULL)
+  {
+    printf("%d\n", node_p->data);
+  }
 }
 

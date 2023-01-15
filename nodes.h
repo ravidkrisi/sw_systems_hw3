@@ -8,6 +8,8 @@
 typedef struct node 
 {
     int data; 
+    int distance;
+    int visited;
     edge *edges_list_head;
     node *next_node;
 } node;
@@ -17,4 +19,6 @@ typedef struct node
 void add_node(graph *graph_p, int data);
 
 node* get_node(graph *graph_p, int data);
+
+void free_node(node *node_p, graph *gr);
 

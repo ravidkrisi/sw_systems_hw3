@@ -2,6 +2,8 @@
 #include "edges.h"
 #include "nodes.h"
 #include <stdio.h>
+
+#define INF 999999
 /**
  * struct that holds the graph object 
 */
@@ -16,3 +18,7 @@ typedef struct graph{
 graph* create_graph(int nodes_number);
 
 int is_node_in_graph(graph *graph_p, int data);
+
+int dijkstra(int start, int end, graph *gh);
+
+void print_graph(graph *gh);
