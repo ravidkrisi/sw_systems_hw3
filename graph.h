@@ -53,7 +53,9 @@ void free_outward_edges(node *node_p);
 
 void add_edge(node *start_p, int start, int end, int weight);
 
-void edges_going_to_node(node *head, int end);
+void free_edge(edge *edge_p);
+
+void free_edges_going_to_node(node *head, int end);
 
 void add_node(graph *graph_p, int data);
 

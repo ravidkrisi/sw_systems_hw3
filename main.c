@@ -3,7 +3,7 @@
 int main()
 {
     //intialize vars 
-    char char_input ='T';
+    char char_input ='Z';
     int int_input =0, node_start=0, node_end=0, weight=0;
     node *node_start_p, *node_end_p;
 
@@ -95,6 +95,23 @@ int main()
                 add_edge(node_start_p, node_start, node_end, weight);
                 printf("added edge:(%d,%d)\n", node_start, node_end);
             }
+        }
+        else if(char_input == 'D')
+        {
+            scanf(" %d", &int_input);
+            node *head_p= graph_p->head_node;
+            free_edges_going_to_node(head_p, int_input);
+            node_start_p = get_node(graph_p, int_input);
+            free_node(node_start_p, graph_p);
+        }
+
+        else if(char_input == 'S')
+        {
+            scanf(" %d", &node_start);
+            scanf(" %d", &node_end);
+            printf("im here \n");
+            int dist = dijkstra(node_start, node_end, graph_p);
+            printf("Dijsktra shortest path: %d\n", dist);
         }
 
     }

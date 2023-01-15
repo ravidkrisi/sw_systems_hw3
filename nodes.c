@@ -59,13 +59,15 @@ void free_node(node *node_p, graph *gr)
     }
 
     //if node_p is not the head list
-    while(head != NULL)
+    node *head_next=head->next_node;
+    while(head_next != NULL)
     {
-        if(head->next_node->data == node_p->data)
+        if(head_next->data == node_p->data)
         {
             head->next_node = temp;
             free(node_p);
         }
-        head=head->next_node;
+        head = head_next;
+        head_next = head_next->next_node;
     }
 }
