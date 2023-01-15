@@ -1,7 +1,4 @@
-#pragma once
-#include <stdio.h>
-#include "algo.h"
-#include "nodes.h"
+#include "graph.h"
 
 
 /**
