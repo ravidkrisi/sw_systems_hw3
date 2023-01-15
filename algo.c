@@ -108,7 +108,7 @@ void print_graph(graph *gh)
     edge_p = node_p->edges_list_head;
     while(edge_p!=NULL)
     {
-        printf("edge:(%d,%d)\n", edge_p->start, edge_p->end);
+        printf("edge:(%d,%d) weight: %d\n", edge_p->start, edge_p->end, edge_p->weight);
         edge_p = edge_p->next_edge;
     }
     node_p=node_p->next_node;
@@ -130,3 +130,32 @@ void free_graph(graph *graph_p)
     }
 }
 
+void tsp( int *arr, int start, int end, graph *graph_p, int *cost)
+{
+    if(start == end)
+    {
+        int current_cost = 0;
+        for (int i=0; i<end; i++)
+        {
+            current_cost += dijkstra(arr[i], arr[i+1], graph_p);
+        }
+        // printf("current cost: %d\n", current_cost);
+        if(current_cost<(*cost))
+        {
+            *cost = current_cost;
+        }
+    }
+    else
+    {
+        for(int i=start; i<=end; i++)
+        {
+            int temp = arr[start];
+            arr[start] = arr[i];
+            arr[i] = temp;
+
+            tsp(arr, start +1, end, graph_p, cost);
+            arr[i] = arr[start];
+            arr[start] = temp;
+        }
+    }
+}

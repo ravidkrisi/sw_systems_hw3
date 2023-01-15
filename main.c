@@ -20,15 +20,12 @@ int main()
             {
                 scanf(" %d", &int_input);
                 graph_p = create_graph(int_input);
-                printf("graph created\n");
             }
             else
             {
                 free_graph(graph_p);
                 scanf(" %d", &int_input);
-                graph_p = create_graph(int_input);
-                printf("graph created\n");
-                
+                graph_p = create_graph(int_input);                
             }
         }  
 
@@ -40,7 +37,6 @@ int main()
             if(is_node_in_graph(graph_p, node_start) == 0)
             {
             add_node(graph_p, node_start);
-            printf("added node: %d\n", node_start);
             }
             //enter the node pointer to node_start_p
             node_start_p = get_node(graph_p, node_start);
@@ -58,13 +54,11 @@ int main()
                 if(is_node_in_graph(graph_p, node_end) == 0)
                 {
                 add_node(graph_p, node_end);
-                printf("added node: %d\n", node_end);
                 }
                 //enter the node pointer to node_end_p
                 node_end_p = get_node(graph_p, node_end);
                 //add the edge to the graph
                 add_edge(node_start_p, node_start, node_end, weight);
-                printf("added edge:(%d,%d)\n", node_start, node_end);
             }
             
         } 
@@ -75,6 +69,7 @@ int main()
             if(is_node_in_graph(graph_p, node_start)==0)
             {
                 add_node(graph_p, node_start);
+                node_start_p = get_node(graph_p, node_start);
             }
             //else delete all outward edges of the node
             else
@@ -91,17 +86,10 @@ int main()
                     break;
                 }
                 scanf(" %d", &weight);
-                //check if the node exist in the graph, else add it
-                if(is_node_in_graph(graph_p, node_end) == 0)
-                {
-                add_node(graph_p, node_end);
-                printf("added node: %d\n", node_end);
-                }
-                //enter the node pointer to node_end_p
+
                 node_end_p = get_node(graph_p, node_end);
                 //add the edge to the graph
                 add_edge(node_start_p, node_start, node_end, weight);
-                printf("added edge:(%d,%d)\n", node_start, node_end);
             }
         }
         else if(char_input == 'D')
@@ -117,12 +105,26 @@ int main()
         {
             scanf(" %d", &node_start);
             scanf(" %d", &node_end);
-            printf("im here \n");
             int dist = dijkstra(node_start, node_end, graph_p);
             printf("Dijsktra shortest path: %d\n", dist);
         }
 
+        else if(char_input == 'T')
+        {
+            scanf(" %d", &int_input);
+            int arr [int_input];
+            for(int i = 0; i<int_input; i++)
+            {
+                scanf( "%d", &arr[i]);
+            }
+            int *cost_p = malloc(sizeof(int));
+            *cost_p = INF;
+            tsp(arr, 0, int_input-1, graph_p, cost_p);
+            if(*cost_p == INF) *cost_p =-1;
+            printf("TSP shortest path: %d\n", *cost_p);
+            free(cost_p);
+        }
+
     }
-    print_graph(graph_p);
     return 0;
 }

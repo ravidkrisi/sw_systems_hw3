@@ -38,6 +38,7 @@ struct graph{
     int nodes_number;
 };
 
+
 /**
  * decleretions for the methods in the c file 
 */
@@ -48,6 +49,8 @@ void free_graph(graph *graph_p);
 int is_node_in_graph(graph *graph_p, int data);
 
 int dijkstra(int start, int end, graph *gh);
+
+void tsp( int *arr, int start, int end, graph *graph_p, int *cost);
 
 void print_graph(graph *gh);
 
