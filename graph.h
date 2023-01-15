@@ -43,6 +43,8 @@ struct graph{
 */
 graph* create_graph(int nodes_number);
 
+void free_graph(graph *graph_p);
+
 int is_node_in_graph(graph *graph_p, int data);
 
 int dijkstra(int start, int end, graph *gh);

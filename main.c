@@ -22,6 +22,14 @@ int main()
                 graph_p = create_graph(int_input);
                 printf("graph created\n");
             }
+            else
+            {
+                free_graph(graph_p);
+                scanf(" %d", &int_input);
+                graph_p = create_graph(int_input);
+                printf("graph created\n");
+                
+            }
         }  
 
         else if(char_input == 'n')

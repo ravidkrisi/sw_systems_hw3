@@ -114,4 +114,19 @@ void print_graph(graph *gh)
     node_p=node_p->next_node;
   }
 }
+/**
+ * this method free all the graph nodes
+ * @param graph_p pointer to the graph 
+*/
+void free_graph(graph *graph_p)
+{
+    node *head = graph_p->head_node;
+    node *temp = NULL;
+    while(head != NULL)
+    {
+        temp = head->next_node;
+        free_node(head, graph_p);
+        head = temp;
+    }
+}
 
