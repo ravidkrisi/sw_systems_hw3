@@ -1,4 +1,4 @@
-#include "algo.h"
+#include "graph.h"
 
 /**
  * this method creates a graph with the number of nodes

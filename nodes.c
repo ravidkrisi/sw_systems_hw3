@@ -1,4 +1,4 @@
-#include "nodes.h"
+#include "graph.h"
 
 /**
  * this method adds the node to the graph
