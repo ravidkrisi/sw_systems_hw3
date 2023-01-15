@@ -61,7 +61,6 @@ int dijkstra(int start, int end, graph *gh)
     }
     //set start node's distance to 0
     start_p->distance = 0;
-    node *head = gh->head_node;
 
 
     while(start_p->visited!=1)
@@ -78,7 +77,7 @@ int dijkstra(int start, int end, graph *gh)
         {
         if(start_p->distance+edge_head->weight<end_p->distance)
         {
-            end_p->distance=start_p->distance+edge_head;
+            end_p->distance=start_p->distance+edge_head->weight;
             if(end_p->distance<min)
             {
                 min = end_p->distance;
@@ -94,7 +93,7 @@ int dijkstra(int start, int end, graph *gh)
     }
 
     //set pointer to the end node we supposed to check the distance and return the distance
-    node *end_p = get_node(gh, end);
+    end_p = get_node(gh, end);
     return end_p->distance;
 }
 
@@ -105,6 +104,7 @@ void print_graph(graph *gh)
   while(node_p!=NULL)
   {
     printf("%d\n", node_p->data);
+    node_p=node_p->next_node;
   }
 }
 
