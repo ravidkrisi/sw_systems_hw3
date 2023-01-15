@@ -36,7 +36,8 @@ int main()
             }
             //enter the node pointer to node_start_p
             node_start_p = get_node(graph_p, node_start);
-
+            
+            //scanning all the edges out of the node
             while(1)
             {
                 int flag=scanf(" %d", &node_end);
@@ -62,15 +63,18 @@ int main()
         else if(char_input == 'B')
         {
             scanf(" %d", &node_start);
+            //if node is not in the graph add it 
             if(is_node_in_graph(graph_p, node_start)==0)
             {
                 add_node(graph_p, node_start);
             }
+            //else delete all outward edges of the node
             else
             {
                 node_start_p = get_node(graph_p, node_start);
                 free_outward_edges(node_start_p);
             }
+            //scanning all edges out of the node
             while(1)
             {
                 int flag=scanf(" %d", &node_end);
