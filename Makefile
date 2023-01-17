@@ -16,4 +16,4 @@ main.o: main.c graph.h
 	gcc -c main.c -o main.o
 
 clean: 
-	rm graph *.o 
+	rm graph *.o *.txt
