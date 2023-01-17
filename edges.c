@@ -21,10 +21,6 @@ void add_edge(node *start_p, int start, int end, int weight)
     edge_p->weight = weight;
     edge_p->next_edge = start_p->edges_list_head; 
     start_p->edges_list_head = edge_p;
-    //start->edges_list_head: (1,5)->(1,3)->(1,2)
-    //edge_p:(1,1)
-    //edge_p->next_edge = start->edges_list_head: (1,1)->(1,5)->(1,3)->(1,2)
-    //start->edges_list_head = edge_p: (1,1)->(1,5)->(1,3)->(1,2)
 }
 
 /**
@@ -46,7 +42,7 @@ void free_outward_edges(node *node_p)
 
 /**
  * this method free all the edges with matched end index to the node we want to delete
- * @param head pointer to the nodes head list of the graph
+ * @param graph_p pointer to the graph 
  * @param end the index of the node we want to delete
 */
 void free_edges_going_to_node(graph *graph_p, int end)
@@ -81,41 +77,4 @@ void free_edges_going_to_node(graph *graph_p, int end)
         }
         head = head->next_node;
     }
-    // while(head!=NULL)
-    // {
-    // edge *edge_head = head->edges_list_head;
-    // edge *temp = NULL;
-    // if(edge_head!=NULL)
-    // {
-    //     //if the edge is the head of the edges list
-    //     if(edge_head->end == end)
-    //     {
-    //         temp = edge_head->next_edge;
-    //         head->edges_list_head = temp;
-    //         free_edge(edge_head);
-    //     }
-    //     //if the edge is not the head of the edges list
-    //     else
-    //     {
-    //         temp = edge_head->next_edge;
-    //         while(temp!=NULL)
-    //         {
-    //             if(temp->end == end)
-    //             {
-    //                 edge_head->next_edge = temp->next_edge;
-    //                 free(temp);
-    //             }
-    //             edge_head = temp;
-    //             temp = temp -> next_edge;
-    //         }
-    //     }
-    // }
-    // head = head->next_node;
-    // }
-}
-
-void free_edge(edge *edge_p)
-{
-    // free(edge_p->next_edge);
-    free(edge_p);
 }

@@ -24,7 +24,6 @@ int main()
             else
             {
                 free_graph(graph_p);
-                free(graph_p);
                 scanf(" %d", &int_input);
                 graph_p = create_graph(int_input);                
             }
@@ -126,6 +125,5 @@ int main()
 
     }
     free_graph(graph_p);
-    free(graph_p);
     return 0;
 }

@@ -97,6 +97,10 @@ int dijkstra(int start, int end, graph *gh)
     return end_p->distance;
 }
 
+/**
+ * this method prints the graph 
+ * @param pointer to the graph
+*/
 void print_graph(graph *gh)
 {
     if(gh->head_node==NULL)
@@ -135,8 +139,17 @@ void free_graph(graph *graph_p)
         free_node(head->data, graph_p);
         head = temp;
     }
+    free(graph_p);
 }
 
+/**
+ * this method get set of nodes' index and calculate the shortest path between them 
+ * it create all permutetions of the array and calculate the cost of the path  
+ * @param arr pointer to the array contains set of nodes' index 
+ * @param start index to the array to shuffle the array
+ * @param end index to the func to shuffle the array
+ * @param cost pointer to the minimum cost of all the pathes
+*/
 void tsp( int *arr, int start, int end, graph *graph_p, int *cost)
 {
     if(start == end)

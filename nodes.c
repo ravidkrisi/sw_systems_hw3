@@ -41,7 +41,7 @@ node* get_node(graph *graph_p, int data)
 
 /**
  * this method free the node and the linked list of edges going outward
- * @param node_p pointer to the node
+ * @param data the index of the node
  * @param gr pointer to the graph
 */
 void free_node(int data, graph *gr)
@@ -79,32 +79,5 @@ void free_node(int data, graph *gr)
 
     }
     }
-
-    // free_outward_edges(node_p);
-
-    // node *head = gr->head_node;
-    // node *temp = node_p->next_node;
-
-    // //if node_p is the head of the list 
-    // if (head->data == node_p->data)
-    // {
-    //     gr->head_node = temp;
-    //     free(node_p);
-    //     return;
-    // }
-
-    // //if node_p is not the head list
-    // node *head_next=head->next_node;
-    // while(head_next != NULL)
-    // {
-    //     if(head_next->data == node_p->data)
-    //     {
-    //         head->next_node = temp;
-    //         free(node_p);
-    //         return;
-    //     }
-    //     head = head_next;
-    //     head_next = head_next->next_node;
-    // }
-    }
+}
 }
