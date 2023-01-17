@@ -1,3 +1,5 @@
+all: graph
+
 graph: algo.o edges.o nodes.o main.o
 	gcc algo.o edges.o nodes.o main.o -o graph
 
