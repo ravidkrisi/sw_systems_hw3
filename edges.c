@@ -49,43 +49,73 @@ void free_outward_edges(node *node_p)
  * @param head pointer to the nodes head list of the graph
  * @param end the index of the node we want to delete
 */
-void free_edges_going_to_node(node *head, int end)
+void free_edges_going_to_node(graph *graph_p, int end)
 {
+    node *head = graph_p->head_node;
     while(head!=NULL)
     {
-    edge *edge_head = head->edges_list_head;
-    edge *temp = NULL;
-    if(edge_head!=NULL)
-    {
-        //if the edge is the head of the edges list
-        if(edge_head->end == end)
+        edge *edge_head = head->edges_list_head;
+        edge *temp = NULL;
+        if(edge_head!=NULL)
         {
-            temp = edge_head->next_edge;
-            head->edges_list_head = temp;
-            free_edge(edge_head);
-        }
-        //if the edge is not the head of the edges list
-        else
-        {
-            temp = edge_head->next_edge;
-            while(temp!=NULL)
+            if(edge_head->end == end)
             {
-                if(temp->end == end)
+                head->edges_list_head = edge_head->next_edge;
+                free(edge_head);
+            }
+            else
+            {
+                temp =edge_head->next_edge;
+                while(temp!=NULL)
                 {
-                    edge_head->next_edge = temp->next_edge;
-                    free_edge(temp);
+                    if(temp->end == end)
+                    {
+                        edge_head->next_edge = temp->next_edge;
+                        free(temp);
+                        break;
+                    }
+                    edge_head = temp;
+                    temp = temp->next_edge;
                 }
-                edge_head = temp;
-                temp = temp -> next_edge;
             }
         }
+        head = head->next_node;
     }
-    head = head->next_node;
-    }
+    // while(head!=NULL)
+    // {
+    // edge *edge_head = head->edges_list_head;
+    // edge *temp = NULL;
+    // if(edge_head!=NULL)
+    // {
+    //     //if the edge is the head of the edges list
+    //     if(edge_head->end == end)
+    //     {
+    //         temp = edge_head->next_edge;
+    //         head->edges_list_head = temp;
+    //         free_edge(edge_head);
+    //     }
+    //     //if the edge is not the head of the edges list
+    //     else
+    //     {
+    //         temp = edge_head->next_edge;
+    //         while(temp!=NULL)
+    //         {
+    //             if(temp->end == end)
+    //             {
+    //                 edge_head->next_edge = temp->next_edge;
+    //                 free(temp);
+    //             }
+    //             edge_head = temp;
+    //             temp = temp -> next_edge;
+    //         }
+    //     }
+    // }
+    // head = head->next_node;
+    // }
 }
 
 void free_edge(edge *edge_p)
 {
-    free(edge_p->next_edge);
+    // free(edge_p->next_edge);
     free(edge_p);
 }

@@ -99,6 +99,12 @@ int dijkstra(int start, int end, graph *gh)
 
 void print_graph(graph *gh)
 {
+    if(gh->head_node==NULL)
+    {
+        printf("graph is empty\n");
+    }
+    else
+    {
   node *node_p = gh->head_node;
   edge *edge_p = NULL;
 
@@ -113,6 +119,7 @@ void print_graph(graph *gh)
     }
     node_p=node_p->next_node;
   }
+    }
 }
 /**
  * this method free all the graph nodes
@@ -125,7 +132,7 @@ void free_graph(graph *graph_p)
     while(head != NULL)
     {
         temp = head->next_node;
-        free_node(head, graph_p);
+        free_node(head->data, graph_p);
         head = temp;
     }
 }

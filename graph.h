@@ -60,11 +60,11 @@ void add_edge(node *start_p, int start, int end, int weight);
 
 void free_edge(edge *edge_p);
 
-void free_edges_going_to_node(node *head, int end);
+void free_edges_going_to_node(graph *graph_p, int end);
 
 void add_node(graph *graph_p, int data);
 
 
 node* get_node(graph *graph_p, int data);
 
-void free_node(node *node_p, graph *gr);
+void free_node(int data, graph *graph_p);

@@ -20,10 +20,12 @@ int main()
             {
                 scanf(" %d", &int_input);
                 graph_p = create_graph(int_input);
+                printf("im here\n");
             }
             else
             {
                 free_graph(graph_p);
+                free(graph_p);
                 scanf(" %d", &int_input);
                 graph_p = create_graph(int_input);                
             }
@@ -95,10 +97,8 @@ int main()
         else if(char_input == 'D')
         {
             scanf(" %d", &int_input);
-            node *head_p= graph_p->head_node;
-            free_edges_going_to_node(head_p, int_input);
-            node_start_p = get_node(graph_p, int_input);
-            free_node(node_start_p, graph_p);
+            free_edges_going_to_node(graph_p, int_input);
+            free_node(int_input, graph_p);
         }
 
         else if(char_input == 'S')
@@ -126,5 +126,7 @@ int main()
         }
 
     }
+    free_graph(graph_p);
+    free(graph_p);
     return 0;
 }
