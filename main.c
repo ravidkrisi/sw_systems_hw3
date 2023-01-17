@@ -106,7 +106,7 @@ int main()
             scanf(" %d", &node_start);
             scanf(" %d", &node_end);
             int dist = dijkstra(node_start, node_end, graph_p);
-            printf("Dijsktra shortest path: %d\n", dist);
+            printf("Dijsktra shortest path: %d \n", dist);
         }
 
         else if(char_input == 'T')
@@ -121,7 +121,7 @@ int main()
             *cost_p = INF;
             tsp(arr, 0, int_input-1, graph_p, cost_p);
             if(*cost_p == INF) *cost_p =-1;
-            printf("TSP shortest path: %d\n", *cost_p);
+            printf("TSP shortest path: %d \n", *cost_p);
             free(cost_p);
         }
 
