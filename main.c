@@ -20,7 +20,6 @@ int main()
             {
                 scanf(" %d", &int_input);
                 graph_p = create_graph(int_input);
-                printf("im here\n");
             }
             else
             {
